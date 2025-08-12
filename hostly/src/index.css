@@ -1,0 +1,59 @@
+/* ================================================= */
+/* ARQUIVO: index.css (A Base Visual do Seu Site)    */
+/* ================================================= */
+
+/* --- 1. IMPORTAÇÃO DAS FONTES --- */
+/* Importa as duas fontes escolhidas em uma única chamada. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap");
+
+/* --- 2. PALETA DE CORES GLOBAL (Fonte da Verdade) --- */
+:root {
+  /* Sua paleta base */
+  --cor-fundo-principal: #f4f0db;
+  --cor-fundo-sutil: #fffaf1;
+  --cor-primaria: #ecd9ba;
+  --cor-acento: #dec19b;
+  --cor-texto-principal: #333333;
+  --cor-texto-secundario: #555555;
+
+  /* Cores de estado para botões e alertas */
+  --cor-sucesso: #2a9d8f;
+  --cor-perigo: #e76f51;
+  --cor-aviso: #f4a261;
+  --cor-info: #5c677d;
+}
+
+/* --- 3. ESTILOS GLOBAIS E RESETS BÁSICOS --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Uma boa prática para o layout */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  /* APLICAÇÃO DA NOVA IDENTIDADE VISUAL */
+  font-family: "Montserrat", sans-serif; /* Usa a fonte escolhida em todo o site */
+  background-color: var(
+    --cor-fundo-principal
+  ); /* Usa a cor de fundo da paleta */
+  color: var(--cor-texto-principal); /* Usa a cor de texto da paleta */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Define uma largura máxima para o conteúdo principal */
+main {
+  /* A tag 'main' agora apenas serve como um marco semântico, sem limitar o layout. */
+  display: block; /* Garante que ela ocupe a largura disponível. */
+}
+
+/* NOVA CLASSE UTILITÁRIA para centralizar conteúdo quando necessário */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}

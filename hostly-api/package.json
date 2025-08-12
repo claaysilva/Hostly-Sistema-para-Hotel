@@ -1,0 +1,30 @@
+{
+  "name": "hostly-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:create": "node db/setup.js",
+    "db:migrate": "npx knex migrate:latest",
+    "db:rollback": "npx knex migrate:rollback",
+    "db:seed": "npx knex seed:run",
+    "db:setup": "npm run db:create && npm run db:migrate && npm run db:seed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

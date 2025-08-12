@@ -1,0 +1,36 @@
+.filters-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+}
+.filters-container > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+.filters-container label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+.filters-container select,
+.filters-container input[type="date"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  background: #f7fafc;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+.filters-container select:focus,
+.filters-container input[type="date"]:focus {
+  border-color: #3182ce;
+  outline: none;
+}

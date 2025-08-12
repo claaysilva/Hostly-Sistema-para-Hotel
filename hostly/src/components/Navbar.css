@@ -1,0 +1,115 @@
+/* :root deve estar no seu arquivo CSS principal (ex: index.css) */
+:root {
+  --cor-fundo-principal: #f4f0db;
+  --cor-fundo-sutil: #fffaf1;
+  --cor-primaria: #ecd9ba; /* Dutch White */
+  --cor-acento: #dec19b; /* Dark Vanilla */
+  --cor-texto-principal: #333333;
+  --cor-texto-secundario: #555555;
+
+  /* Nova variável para ações de "perigo" como logout/delete */
+  --cor-perigo: #dc3545;
+  --cor-perigo-hover: #c82333;
+}
+
+/* --- Seu Navbar.css refatorado --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--cor-primaria); /* Usando a cor primária da paleta */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra suave */
+
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar-brand {
+  font-family: "Playfair Display", serif; /* Fonte especial para a marca */
+  font-size: 1.8rem;
+  font-weight: 700; /* Usando o peso "bold" que importamos */
+  color: var(--cor-texto-principal);
+  text-decoration: none;
+}
+
+/* Em Navbar.css */
+.navbar-links a {
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500; /* Usando o peso "medium" que importamos */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-links a:hover {
+  /* A cor do texto muda para o tom mais escuro, como você pediu */
+  color: var(--cor-texto-principal);
+  text-decoration: none;
+  /* rgba(51,51,51) é o equivalente de #333 */
+  text-shadow: 0 0 8px rgba(51, 51, 51, 0.3);
+}
+
+/* Seção do usuário logado */
+.navbar-user-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-greeting {
+  color: var(
+    --cor-texto-secundario
+  ); /* CORRIGIDO: Texto escuro para legibilidade */
+  font-weight: 00;
+}
+
+/* Botão de Logout (Mantendo o vermelho, mas com variável)
+.logout-button {
+  background-color: var(--cor-perigo);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+} */
+
+.logout-button:hover {
+  background-color: var(--cor-perigo-hover);
+}
+
+/* --- ALTERNATIVA PARA O BOTÃO DE LOGOUT (visual mais clean) ---
+Se preferir um botão que combine mais com a paleta, apague o .logout-button acima
+e descomente este abaixo. */
+
+.logout-button {
+  background-color: var(--cor-acento);
+  color: var(--cor-texto-principal);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: filter 0.2s;
+}
+.logout-button:hover {
+  filter: brightness(75%);
+}
+
+/* Link de Login (quando não está logado) */
+.login-link {
+  background-color: transparent;
+  border: 1px solid var(--cor-texto-principal); /* CORRIGIDO: Borda escura */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: var(--cor-texto-principal); /* CORRIGIDO: Texto escuro */
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.login-link:hover {
+  background-color: var(--cor-acento);
+  border-color: var(--cor-acento);
+}

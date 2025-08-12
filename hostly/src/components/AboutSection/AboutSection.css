@@ -1,0 +1,28 @@
+/* src/components/AboutSection/AboutSection.css */
+
+.about-section {
+  padding: 5rem 2rem; /* Espaçamento generoso em cima e embaixo */
+  background-color: var(--cor-fundo-sutil); /* Cor de fundo da sua paleta */
+  text-align: center;
+}
+
+.about-content {
+  max-width: 750px; /* Largura máxima para o texto não ficar muito longo */
+  margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+.about-content h2 {
+  font-family: "Playfair Display", serif; /* Fonte elegante para o título */
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  font-family: "Montserrat", sans-serif; /* Fonte padrão para o texto */
+  font-size: 1.1rem;
+  line-height: 1.8; /* Espaçamento entre as linhas para melhor leitura */
+  color: var(--cor-texto-secundario);
+}

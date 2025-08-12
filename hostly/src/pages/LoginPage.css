@@ -1,0 +1,33 @@
+/* src/pages/LoginPage.css */
+.login-container {
+  max-width: 450px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: var(--cor-fundo-sutil);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--cor-primaria);
+}
+
+.login-container h1 {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 2rem;
+  color: var(--cor-texto-principal);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-tip {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--cor-fundo-principal);
+  border-radius: 8px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+}

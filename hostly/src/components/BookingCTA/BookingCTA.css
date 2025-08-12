@@ -1,0 +1,55 @@
+/* src/components/BookingCTA/BookingCTA.css */
+
+.cta-booking-section {
+  padding: 5rem 2rem;
+  background-color: var(
+    --cor-acento
+  ); /* Usando a cor de acento para criar contraste */
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--cor-texto-principal); /* Texto principal escuro */
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--cor-texto-secundario); /* Texto secundário para o subtítulo */
+  margin-bottom: 2.5rem;
+}
+
+.cta-booking-button {
+  background-color: var(
+    --cor-fundo-sutil
+  ); /* Cor de fundo clara para o botão */
+  color: var(--cor-texto-principal); /* Texto escuro */
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--cor-texto-principal);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.cta-booking-button:hover {
+  background-color: var(--cor-texto-principal);
+  color: var(--cor-fundo-sutil);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

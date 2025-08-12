@@ -1,0 +1,86 @@
+/* Use este código tanto para UserLoginPage.css quanto para UserRegisterPage.css */
+
+.user-auth-container {
+  max-width: 450px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: var(--cor-fundo-sutil);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--cor-primaria);
+}
+
+.user-auth-container h1 {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 2rem;
+  color: var(--cor-texto-principal);
+}
+
+.user-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Reutilizando os estilos de .form-group e .submit-button que já temos */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+.form-group input {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fff;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--cor-acento);
+  box-shadow: 0 0 0 3px rgba(222, 193, 155, 0.3);
+}
+
+.submit-button {
+  padding: 0.8rem 1.5rem;
+  color: white;
+  background-color: var(--cor-sucesso);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submit-button:hover {
+  filter: brightness(90%);
+}
+
+.error-message {
+  color: var(--cor-perigo);
+  text-align: center;
+  background-color: rgba(231, 111, 81, 0.1);
+  padding: 0.8rem;
+  border-radius: 5px;
+}
+
+/* Estilo para o link "Não tem conta? Cadastre-se" */
+.auth-switch-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+}
+
+.auth-switch-link a {
+  color: var(--cor-sucesso);
+  font-weight: 600;
+  text-decoration: underline;
+}

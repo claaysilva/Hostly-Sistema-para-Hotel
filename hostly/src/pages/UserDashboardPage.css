@@ -1,0 +1,66 @@
+/* src/pages/UserDashboardPage.css */
+.user-dashboard-container {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.user-dashboard-container h1 {
+  color: var(--cor-texto-principal);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-primaria);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.reservations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.reservation-card {
+  background-color: var(--cor-fundo-sutil);
+  border: 1px solid var(--cor-primaria);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-card h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--cor-texto-principal);
+  font-size: 1.25rem;
+}
+
+.reservation-card p {
+  margin: 0.25rem 0;
+  color: var(--cor-texto-secundario);
+  line-height: 1.6;
+}
+
+.reservation-card p strong {
+  color: var(--cor-texto-principal);
+}
+.reservation-card .action-button {
+  margin-top: auto;
+}
+
+.status-active {
+  color: var(--cor-sucesso);
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.status-completed {
+  color: var(--cor-info);
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.status-cancelled {
+  color: var(--cor-perigo);
+  font-weight: bold;
+  text-transform: capitalize;
+}

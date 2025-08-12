@@ -1,0 +1,207 @@
+/* ----- Estrutura da Página ----- */
+.room-list-container {
+  /* A classe '.container' no JSX já centraliza, então aqui cuidamos do espaçamento interno. */
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.room-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--cor-acento);
+}
+
+.room-list-header h1 {
+  font-family: "Playfair Display", serif; /* Fonte elegante para o título principal */
+  font-size: 2.4rem;
+  color: var(--cor-texto-principal);
+  margin-bottom: 1rem;
+}
+
+.add-new-button {
+  display: inline-block;
+  background-color: var(--cor-acento);
+  color: var(--cor-texto-principal);
+  padding: 1rem 1.5rem; /* <<< CORREÇÃO AQUI */
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.add-new-button:hover {
+  background-color: var(--cor-primaria);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+.room-card {
+  background-color: var(--cor-fundo-sutil);
+  border: 1px solid var(--cor-primaria);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* <<< Garanta que esta linha esteja aqui também */
+}
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+.room-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.room-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.room-card-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--cor-texto-principal);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.room-card-content p {
+  margin: 0.25rem 0;
+  color: var(--cor-texto-secundario);
+}
+.price {
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+.price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--cor-texto-secundario);
+}
+.occupancy-status {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background-color: var(--cor-fundo-principal);
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.status-available {
+  color: var(--cor-sucesso);
+  font-weight: 700;
+}
+.status-unavailable {
+  color: var(--cor-perigo);
+  font-weight: 700;
+}
+.guest-info {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+}
+.room-card-actions {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+.action-button {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action-button:hover {
+  filter: brightness(90%);
+  transform: scale(1.03);
+}
+.action-button.edit {
+  background-color: var(--cor-aviso);
+  color: var(--cor-texto-principal);
+}
+.action-button.delete {
+  background-color: var(--cor-perigo);
+  color: white;
+}
+.action-button.check-in {
+  background-color: var(--cor-sucesso);
+  color: white;
+}
+.action-button.check-out {
+  background-color: var(--cor-info);
+  color: white;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal-content {
+  background: var(--cor-fundo-sutil);
+  padding: 2.5rem;
+  border-radius: 12px;
+  min-width: 450px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.modal-content h2 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 1rem 0;
+  color: var(--cor-texto-principal);
+}
+.modal-content p {
+  color: var(--cor-texto-secundario);
+  margin-bottom: 2rem;
+}
+.modal-select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 5px;
+  background-color: white;
+  font-size: 1rem;
+}
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.modal-actions .action-button {
+  flex: none;
+  padding: 0.7rem 2rem;
+}
+.modal-actions .action-button.cancel {
+  background-color: transparent;
+  border: 1px solid var(--cor-texto-secundario);
+  color: var(--cor-texto-secundario);
+}

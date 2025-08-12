@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+/dist
+/build
+.esbuild/
+
+# VSCode
+.vscode/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Imagens de upload temporárias
+hostly-api/public/images/
+
+# Banco de dados local
+*.sqlite
+*.db
+
+# Outros arquivos temporários
+*.tmp
+*.swp
+
+# Favicon e arquivos gerados
+hostly/public/favicon.svg
+hostly/public/fiveicon.ico

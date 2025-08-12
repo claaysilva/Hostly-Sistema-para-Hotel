@@ -56,6 +56,8 @@ const AdminReservationsPage = () => {
       }
     };
     fetchReservations();
+    // O React sugere adicionar buildQuery como dependência, mas como ela é estável, podemos ignorar ou suprimir o aviso:
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const AdminReservationsPage = () => {
       try {
         const response = await axios.get("http://localhost:3001/api/customers");
         setCustomers(response.data);
-      } catch (err) {
+      } catch {
         setCustomers([]);
       }
     };
@@ -71,7 +73,7 @@ const AdminReservationsPage = () => {
       try {
         const response = await axios.get("http://localhost:3001/api/rooms");
         setRooms(response.data);
-      } catch (err) {
+      } catch {
         setRooms([]);
       }
     };

@@ -156,7 +156,10 @@ const RoomListPage = () => {
             <div className="modal-overlay">
               <div className="modal-content">
                 <h2>Confirmar exclusão</h2>
-                <p>Deseja realmente apagar o quarto "{deleteTarget.name}"?</p>
+                <p>
+                  Deseja realmente apagar o quarto &quot;{deleteTarget.name}
+                  &quot;?
+                </p>
                 <div className="modal-actions">
                   <button
                     className="action-button cancel"
@@ -196,7 +199,7 @@ const RoomListPage = () => {
         {modal.type === "check-in" && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <h2>Fazer Check-in no Quarto "{modal.room?.name}"</h2>
+              <h2>Fazer Check-in no Quarto &quot;{modal.room?.name}&quot;</h2>
               <p>Selecione o cliente que está entrando no quarto.</p>
               <select
                 value={selectedCustomer}
@@ -235,8 +238,8 @@ const RoomListPage = () => {
             <div className="modal-content">
               <h2>Confirmar Check-out</h2>
               <p>
-                Deseja realmente fazer o check-out do quarto "{modal.room?.name}
-                "?
+                Deseja realmente fazer o check-out do quarto &quot;
+                {modal.room?.name}&quot;?
               </p>
               <div className="modal-actions">
                 <button

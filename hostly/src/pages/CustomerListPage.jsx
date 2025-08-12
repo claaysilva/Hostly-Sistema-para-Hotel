@@ -107,7 +107,10 @@ const CustomerListPage = () => {
           <div className="modal-overlay">
             <div className="modal-content">
               <h2>Confirmar exclusão</h2>
-              <p>Deseja realmente excluir o cliente "{deleteTarget.name}"?</p>
+              <p>
+                Deseja realmente excluir o cliente &#39;{deleteTarget.name}
+                &#39;?
+              </p>
               <div className="modal-actions">
                 <button
                   className="action-button cancel"
@@ -126,7 +129,7 @@ const CustomerListPage = () => {
                         currentCustomers.filter((c) => c.id !== deleteTarget.id)
                       );
                       setDeleteTarget(null);
-                    } catch (err) {
+                    } catch {
                       setError("Falha ao excluir o cliente.");
                       setDeleteTarget(null);
                     }

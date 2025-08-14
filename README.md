@@ -22,60 +22,10 @@ Hostly-Sistema-para-Hotel/
 
 ## Requisitos
 
+- Node.js >= 18
+- MySQL >= 8
+
 ## Como clonar e rodar o projeto
-
-1. **Clone o repositório:**
-
-   ```bash
-   git clone https://github.com/claaysilva/Hostly-Sistema-para-Hotel.git
-   cd Hostly-Sistema-para-Hotel
-   ```
-
-2. **Configure o banco de dados MySQL:**
-
-   - Crie um banco de dados chamado `hostly` (ou ajuste o nome no arquivo `.env` do backend).
-   - Crie um usuário e senha para o banco.
-   - Execute as migrations e seeds para criar as tabelas e dados iniciais.
-
-3. **Configuração do Backend (hostly-api):**
-
-   ```bash
-   cd hostly-api
-   cp .env.example .env   # Crie o arquivo .env com suas credenciais do MySQL
-   npm install
-   # Execute as migrations e seeds (ajuste conforme seu setup)
-   # Exemplo usando knex:
-   npx knex migrate:latest
-   npx knex seed:run
-   npm start
-   ```
-
-   O backend estará rodando em `http://localhost:3001`
-
-4. **Configuração do Frontend (hostly):**
-   ```bash
-   cd ../hostly
-   npm install
-   npm run dev
-   ```
-   O frontend estará rodando em `http://localhost:5173` (ou porta informada pelo Vite)
-
-## Observações
-
-```env
-DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_NAME=hostly
-```
-
-## Licença
-
-Este projeto é open-source e pode ser usado livremente para fins educacionais e comerciais.
-
-Dúvidas ou sugestões? Abra uma issue ou entre em contato!
-
-## Como clonar e rodar o projeto localmente
 
 1. **Clone o repositório:**
 
@@ -125,7 +75,7 @@ Dúvidas ou sugestões? Abra uma issue ou entre em contato!
 
 ## Licença
 
-Esse projeto é open-source e pode ser usado livremente para fins educacionais e comerciais.
+Este projeto é open-source e pode ser usado livremente para fins educacionais e comerciais.
 
 ---
 

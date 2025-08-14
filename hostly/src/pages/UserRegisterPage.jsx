@@ -1,4 +1,4 @@
-// src/pages/UserRegisterPage.jsx
+// Página de cadastro de novo usuário (cliente)
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,10 +11,13 @@ const UserRegisterPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  /**
+   * Realiza cadastro do usuário cliente
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/api/users/register", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
         name,
         email,
         password,
@@ -22,7 +25,7 @@ const UserRegisterPage = () => {
       alert(
         "Cadastro realizado com sucesso! Você será redirecionado para o login."
       );
-      navigate("/area-cliente"); // Redireciona para o login do cliente
+      navigate("/area-cliente");
     } catch (err) {
       setError(
         err.response?.data?.error || "Falha ao cadastrar. Tente novamente."

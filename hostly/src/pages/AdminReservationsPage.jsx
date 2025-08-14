@@ -46,7 +46,7 @@ const AdminReservationsPage = () => {
         setLoading(true);
         const query = buildQuery();
         const res = await axios.get(
-          `http://localhost:3001/api/bookings${query}`
+          `${import.meta.env.VITE_API_URL}/api/bookings${query}`
         );
         setReservations(res.data);
       } catch {
@@ -63,7 +63,9 @@ const AdminReservationsPage = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/customers");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/customers`
+        );
         setCustomers(response.data);
       } catch {
         setCustomers([]);
@@ -71,7 +73,9 @@ const AdminReservationsPage = () => {
     };
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/rooms");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/rooms`
+        );
         setRooms(response.data);
       } catch {
         setRooms([]);

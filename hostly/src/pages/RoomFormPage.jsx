@@ -22,7 +22,7 @@ const RoomFormPage = () => {
   useEffect(() => {
     if (isEditing) {
       axios
-        .get(`http://localhost:3001/api/rooms/${id}`)
+        .get(`${import.meta.env.VITE_API_URL}/api/rooms/${id}`)
         .then((response) => {
           setRoom({
             ...response.data,
@@ -65,12 +65,16 @@ const RoomFormPage = () => {
 
       if (isEditing) {
         await axios.put(
-          `http://localhost:3001/api/rooms/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/rooms/${id}`,
           formData,
           config
         );
       } else {
-        await axios.post("http://localhost:3001/api/rooms", formData, config);
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/rooms`,
+          formData,
+          config
+        );
       }
       // Força o recarregamento para garantir que a lista de quartos seja atualizada
       window.location.href = "/rooms";

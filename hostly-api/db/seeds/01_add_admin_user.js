@@ -1,3 +1,4 @@
+// Seed para criar usuário admin padrão
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 

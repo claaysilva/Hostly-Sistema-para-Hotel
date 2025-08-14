@@ -19,8 +19,8 @@ const RoomListPage = () => {
     try {
       setLoading(true);
       const [roomsRes, customersRes] = await Promise.all([
-        axios.get("http://localhost:3001/api/rooms"),
-        axios.get("http://localhost:3001/api/customers"),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/rooms`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/customers`),
       ]);
       setRooms(roomsRes.data);
       setCustomers(customersRes.data);
@@ -45,10 +45,13 @@ const RoomListPage = () => {
   const handleConfirmCheckin = async () => {
     if (!selectedCustomer) return;
     try {
-      await axios.post("http://localhost:3001/api/bookings/check-in", {
-        room_id: modal.room.id,
-        customer_id: selectedCustomer,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/bookings/check-in`,
+        {
+          room_id: modal.room.id,
+          customer_id: selectedCustomer,
+        }
+      );
       fetchData();
       handleCloseModal();
     } catch {
@@ -58,9 +61,12 @@ const RoomListPage = () => {
 
   const handleConfirmCheckout = async () => {
     try {
-      await axios.post("http://localhost:3001/api/bookings/check-out", {
-        room_id: modal.room.id,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/bookings/check-out`,
+        {
+          room_id: modal.room.id,
+        }
+      );
       fetchData();
       handleCloseModal();
     } catch {
@@ -172,7 +178,9 @@ const RoomListPage = () => {
                     onClick={async () => {
                       try {
                         await axios.delete(
-                          `http://localhost:3001/api/rooms/${deleteTarget.id}`,
+                          `${import.meta.env.VITE_API_URL}/api/rooms/${
+                            deleteTarget.id
+                          }`,
                           {
                             headers: { "x-user-role": user.role },
                           }

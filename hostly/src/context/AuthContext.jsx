@@ -1,9 +1,8 @@
-// src/context/AuthContext.jsx
+// Contexto de autenticação do usuário
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// 1. O Contexto é criado aqui
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -19,10 +18,16 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  /**
+   * Realiza login do usuário na aplicação.
+   * @param {string} email
+   * @param {string} password
+   * @throws {Error} Mensagem de erro amigável para o usuário
+   */
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
           email,
           password,
@@ -33,6 +38,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("hostly-user", JSON.stringify(userData));
       setUser(userData);
 
+      // Redireciona conforme o tipo de usuário
       if (userData.role === "admin" || userData.role === "operator") {
         navigate("/rooms");
       } else {
@@ -47,12 +53,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Realiza logout do usuário e limpa dados locais.
+   */
   const logout = () => {
     localStorage.removeItem("hostly-user");
     setUser(null);
     navigate("/login");
   };
 
+  // Valor do contexto para uso nos componentes
   const value = { user, login, logout, loading };
 
   if (loading) {
@@ -62,7 +72,9 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// 2. O hook 'useAuth' usa o Contexto criado acima
+/**
+ * Hook para acessar o contexto de autenticação
+ */
 export const useAuth = () => {
   return useContext(AuthContext);
 };

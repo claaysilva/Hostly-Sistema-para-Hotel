@@ -1,4 +1,4 @@
-// src/pages/AvailableRoomsPage.jsx
+// Página de listagem e reserva de quartos disponíveis
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
@@ -11,19 +11,20 @@ const AvailableRoomsPage = () => {
   const { user } = useAuth();
   const [customerId, setCustomerId] = useState(null);
 
+  /**
+   * Busca quartos disponíveis e cliente vinculado ao usuário logado
+   */
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Busca quartos disponíveis
         const roomsRes = await axios.get(
-          "http://localhost:3001/api/rooms?available=true"
+          `${import.meta.env.VITE_API_URL}/api/rooms?available=true`
         );
         setRooms(roomsRes.data);
-        // Busca customer vinculado ao usuário logado
         if (user && user.id) {
           const customersRes = await axios.get(
-            "http://localhost:3001/api/customers"
+            `${import.meta.env.VITE_API_URL}/api/customers`
           );
           const customer = customersRes.data.find((c) => c.user_id === user.id);
           if (customer) setCustomerId(customer.id);
@@ -42,6 +43,9 @@ const AvailableRoomsPage = () => {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  /**
+   * Realiza reserva do quarto para o cliente logado
+   */
   const handleReserve = async (roomId) => {
     setError("");
     if (!user || !user.id || !customerId) {
@@ -52,10 +56,13 @@ const AvailableRoomsPage = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/api/bookings/check-in", {
-        room_id: roomId,
-        customer_id: customerId,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/bookings/check-in`,
+        {
+          room_id: roomId,
+          customer_id: customerId,
+        }
+      );
       setRooms((currentRooms) => currentRooms.filter((r) => r.id !== roomId));
       setSuccessMessage("Reserva realizada com sucesso!");
       setShowSuccess(true);

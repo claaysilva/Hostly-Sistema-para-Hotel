@@ -1,12 +1,11 @@
-// src/pages/UserFormPage.jsx
+// Página de cadastro/edição de funcionário (admin/operator)
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./CustomerFormPage.css"; // Usaremos um CSS dedicado
 
 const UserFormPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const isEditing = Boolean(id);
 
   const [user, setUser] = useState({
@@ -19,16 +18,19 @@ const UserFormPage = () => {
   const [showResetPopup, setShowResetPopup] = useState(false);
   const [resetStatus, setResetStatus] = useState("");
 
+  /**
+   * Busca dados do usuário para edição
+   */
   useEffect(() => {
     const fetchUser = async () => {
       if (isEditing) {
         try {
           const response = await axios.get(
-            `http://localhost:3001/api/users/${id}`
+            `${import.meta.env.VITE_API_URL}/api/users/${id}`
           );
-          setUser({ ...response.data, password: "" }); // Limpa a senha por segurança
+          setUser({ ...response.data, password: "" });
         } catch (err) {
-          console.error("Falha ao carregar dados do usuário:", err); // Adicione esta linha
+          console.error("Falha ao carregar dados do usuário:", err);
           setError("Falha ao carregar dados do usuário.");
         }
       }
@@ -41,10 +43,13 @@ const UserFormPage = () => {
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * Lógica para resetar senha do usuário
+   */
   const handleResetLogic = async () => {
     setResetStatus("aguardando");
     try {
-      await axios.put(`http://localhost:3001/api/users/${id}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
         name: user.name.toUpperCase(),
         email: user.email.toLowerCase(),
         role: user.role,
@@ -61,6 +66,9 @@ const UserFormPage = () => {
     setResetStatus("");
   };
 
+  /**
+   * Envia dados do formulário para cadastrar ou editar usuário
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -82,11 +90,14 @@ const UserFormPage = () => {
 
     try {
       if (isEditing) {
-        await axios.put(`http://localhost:3001/api/users/${id}`, userData);
+        await axios.put(
+          `${import.meta.env.VITE_API_URL}/api/users/${id}`,
+          userData
+        );
       } else {
-        await axios.post("http://localhost:3001/api/users", userData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, userData);
       }
-      window.location.href = "/users"; // Força o recarregamento
+      window.location.href = "/users";
     } catch (err) {
       setError(err.response?.data?.error || "Falha ao salvar o usuário.");
     }

@@ -1,3 +1,4 @@
+// Migration para criar tabela de reservas (bookings)
 exports.up = async function (knex) {
   if (!(await knex.schema.hasTable("bookings"))) {
     return knex.schema.createTable("bookings", (table) => {
@@ -25,6 +26,7 @@ exports.up = async function (knex) {
   }
 };
 
+// Remove tabela de reservas
 exports.down = async function (knex) {
   return knex.schema.dropTableIfExists("bookings");
 };

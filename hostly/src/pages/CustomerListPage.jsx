@@ -1,4 +1,4 @@
-// src/pages/CustomerListPage.jsx
+// Página de listagem e gerenciamento de clientes
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,40 +7,39 @@ import "./CustomerListPage.css";
 const CustomerListPage = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Em CustomerListPage.jsx
-
-  // Em src/pages/CustomerListPage.jsx
-
-  const fetchCustomers = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get("http://localhost:3001/api/customers", {
-        headers: {
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-          Expires: "0",
-        },
-      });
-
-      // ADICIONE ESTA LINHA PARA "ESPIAR" OS DADOS
-      console.log("DADOS RECEBIDOS PELA API:", response.data);
-
-      setCustomers(response.data);
-    } catch (err) {
-      console.error("Erro ao carregar clientes:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCustomers();
-  }, []);
-
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [error, setError] = useState("");
 
+  /**
+   * Busca lista de clientes do backend
+   */
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/customers`,
+          {
+            headers: {
+              "Cache-Control": "no-cache",
+              Pragma: "no-cache",
+              Expires: "0",
+            },
+          }
+        );
+        setCustomers(response.data);
+      } catch {
+        setError("Erro ao carregar clientes.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCustomers();
+  }, []);
+
+  /**
+   * Define cliente alvo para exclusão
+   */
   const handleDelete = (customer) => {
     setDeleteTarget(customer);
   };
@@ -123,7 +122,9 @@ const CustomerListPage = () => {
                   onClick={async () => {
                     try {
                       await axios.delete(
-                        `http://localhost:3001/api/customers/${deleteTarget.id}`
+                        `${import.meta.env.VITE_API_URL}/api/customers/${
+                          deleteTarget.id
+                        }`
                       );
                       setCustomers((currentCustomers) =>
                         currentCustomers.filter((c) => c.id !== deleteTarget.id)

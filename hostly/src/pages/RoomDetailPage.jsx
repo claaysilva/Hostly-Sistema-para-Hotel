@@ -1,4 +1,4 @@
-// src/pages/RoomDetailPage.jsx
+// Página de detalhes do quarto
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
@@ -10,14 +10,19 @@ const RoomDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  /**
+   * Busca detalhes do quarto pelo ID
+   */
   useEffect(() => {
     const fetchRoom = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:3001/api/rooms/${id}`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/rooms/${id}`
+        );
         setRoom(res.data);
       } catch (err) {
-        console.error("Erro ao buscar detalhes do quarto:", err); // Adicione esta linha
+        console.error("Erro ao buscar detalhes do quarto:", err);
         setError("Quarto não encontrado!");
       } finally {
         setLoading(false);

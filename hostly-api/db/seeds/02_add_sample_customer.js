@@ -1,4 +1,4 @@
-// db/seeds/02_add_sample_customer.js
+// Seed para criar cliente e usuário de exemplo
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -10,7 +10,7 @@ exports.seed = async function (knex) {
     console.log("Criando cliente e usuário de exemplo");
     const hashedPassword = await bcrypt.hash("1234", saltRounds);
 
-    // 1. Cria o usuário primeiro e pega o ID
+    // Cria usuário e obtém o ID
     const [newUserId] = await knex("users")
       .insert({
         name: "Cliente Exemplo",
@@ -20,12 +20,12 @@ exports.seed = async function (knex) {
       })
       .returning("id");
 
-    // 2. Cria o cliente correspondente, ligando com o user_id
+    // Cria cliente vinculado ao user_id
     await knex("customers").insert({
       name: "Cliente Exemplo",
       email: customerEmail,
       phone: "21987654321",
-      user_id: newUserId.id || newUserId, // Usa o ID retornado
+      user_id: newUserId.id || newUserId,
     });
   }
 };

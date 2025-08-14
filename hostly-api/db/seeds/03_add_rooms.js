@@ -1,8 +1,8 @@
-// db/seeds/03_add_rooms.js
+// Seed para popular tabela de quartos
 exports.seed = async function (knex) {
   const roomsCount = await knex("rooms").count("id as count").first();
   if (roomsCount.count > 0) {
-    return; // Pula se já tiver quartos
+    return; // Não insere se já houver quartos
   }
 
   console.log("Populando a tabela de quartos...");

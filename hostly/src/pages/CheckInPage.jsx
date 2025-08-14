@@ -15,13 +15,13 @@ const CheckInPage = () => {
   useEffect(() => {
     // Busca a lista de todos os clientes
     axios
-      .get("http://localhost:3001/api/customers")
+      .get(`${import.meta.env.VITE_API_URL}/api/customers`)
       .then((response) => setCustomers(response.data))
       .catch((err) => setError("Falha ao carregar clientes."));
 
     // Busca os dados do quarto específico
     axios
-      .get(`http://localhost:3001/api/rooms/${roomId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/rooms/${roomId}`)
       .then((response) => setRoom(response.data))
       .catch((err) => setError("Falha ao carregar dados do quarto."));
   }, [roomId]);
@@ -34,10 +34,13 @@ const CheckInPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:3001/api/bookings/check-in", {
-        room_id: roomId,
-        customer_id: selectedCustomer,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/bookings/check-in`,
+        {
+          room_id: roomId,
+          customer_id: selectedCustomer,
+        }
+      );
       navigate("/rooms");
     } catch (err) {
       setError(

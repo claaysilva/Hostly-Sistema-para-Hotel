@@ -1,31 +1,25 @@
-// ===================================================
-// ARQUIVO: server.js (Versão Final e Consolidada)
-// ===================================================
+// Backend principal do sistema Hostly
 
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config();
-import express from "express";
-import mysql from "mysql2/promise";
-import cors from "cors";
-import bcrypt from "bcrypt";
-import multer from "multer";
-import path from "path";
-import { fileURLToPath } from "url";
-import fs from "fs"; // Importando o 'fs' no topo
-
-// --- 1. CONFIGURAÇÃO INICIAL ---
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require("express");
+const mysql = require("mysql2/promise");
+const cors = require("cors");
+const bcrypt = require("bcrypt");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+// Configuração inicial do servidor Express
 const app = express();
 const PORT = process.env.PORT || 3001;
 const saltRounds = 10;
 
-// --- 2. MIDDLEWARES ---
+// Middlewares globais
 app.use(cors());
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-// --- 3. CONFIGURAÇÃO DO UPLOAD (MULTER) ---
+// Configuração do upload de imagens (multer)
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // Usando o __dirname definido corretamente
@@ -38,7 +32,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// --- 4. CONFIGURAÇÃO DO BANCO DE DADOS ---
+// Configuração de conexão com banco de dados MySQL
 const dbConfig = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -46,13 +40,11 @@ const dbConfig = {
   database: process.env.DB_NAME,
 };
 
-// ===================================
-// 5. ROTAS DA API
-// ===================================
+// Rotas principais da API
 
 app.get("/", (req, res) => res.send("API do Hostly está funcionando!"));
 
-// --- ROTAS DE AUTENTICAÇÃO ---
+// Rotas de autenticação
 app.post("/api/auth/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
@@ -78,7 +70,7 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// Rota para LISTAR todos os usuários (GET)
+// Rota para listar todos os usuários
 app.get("/api/users", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
@@ -94,8 +86,8 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// --- ROTAS DE CLIENTES (CUSTOMERS) ---
-// Cadastro de cliente com usuário vinculado (usado pelo admin)
+// Rotas de clientes (customers)
+// Cadastro de cliente com usuário vinculado
 app.post("/api/customers/with-user", async (req, res) => {
   const { name, email, phone, password } = req.body;
   if (!name || !email || !password) {
@@ -133,7 +125,7 @@ app.post("/api/customers/with-user", async (req, res) => {
   }
 });
 
-// Listar todos os clientes
+// Rota para listar todos os clientes
 app.get("/api/customers", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
@@ -148,7 +140,7 @@ app.get("/api/customers", async (req, res) => {
   }
 });
 
-// Buscar um cliente pelo ID
+// Rota para buscar cliente pelo ID
 app.get("/api/customers/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -165,7 +157,7 @@ app.get("/api/customers/:id", async (req, res) => {
   }
 });
 
-// Atualizar um cliente
+// Rota para atualizar cliente
 app.put("/api/customers/:id", async (req, res) => {
   const { id } = req.params;
   const { name, email, phone } = req.body;
@@ -186,7 +178,7 @@ app.put("/api/customers/:id", async (req, res) => {
   }
 });
 
-// Deletar um cliente
+// Rota para deletar cliente
 app.delete("/api/customers/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -204,9 +196,9 @@ app.delete("/api/customers/:id", async (req, res) => {
   }
 });
 
-// --- ROTAS DE QUARTOS (ROOMS) ---
+// Rotas de quartos (rooms)
 
-// Listar todos os quartos (lógica unificada)
+// Rota para listar todos os quartos
 app.get("/api/rooms", async (req, res) => {
   const { available } = req.query;
   let query = `
@@ -230,7 +222,7 @@ app.get("/api/rooms", async (req, res) => {
   }
 });
 
-// Buscar um quarto pelo ID
+// Rota para buscar quarto pelo ID
 app.get("/api/rooms/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -247,7 +239,7 @@ app.get("/api/rooms/:id", async (req, res) => {
   }
 });
 
-// Cadastrar um novo quarto
+// Rota para cadastrar novo quarto
 app.post("/api/rooms", upload.single("image"), async (req, res) => {
   const { name, description, capacity, price_per_night } = req.body;
 
@@ -299,7 +291,7 @@ app.post("/api/rooms", upload.single("image"), async (req, res) => {
   }
 });
 
-// Atualizar um quarto
+// Rota para atualizar quarto
 app.put("/api/rooms/:id", upload.single("image"), async (req, res) => {
   const { id } = req.params;
   const { name, description, capacity, price_per_night, is_available } =
@@ -334,7 +326,7 @@ app.put("/api/rooms/:id", upload.single("image"), async (req, res) => {
   }
 });
 
-// Deletar um quarto
+// Rota para deletar quarto
 app.delete("/api/rooms/:id", async (req, res) => {
   const { id } = req.params;
   const userRole = req.headers["x-user-role"];
@@ -358,8 +350,8 @@ app.delete("/api/rooms/:id", async (req, res) => {
   }
 });
 
-// --- ROTAS PARA USUÁRIOS (USERS) ---
-// --- ROTA DE RESET DE SENHA POR E-MAIL ---
+// Rotas de usuários (users)
+// Rota de reset de senha por e-mail
 app.put("/api/users/reset-password-by-email", async (req, res) => {
   const { email } = req.body;
   if (!email) {
@@ -395,7 +387,7 @@ app.put("/api/users/reset-password-by-email", async (req, res) => {
   }
 });
 
-// Cadastrar usuário (cliente ou funcionário)
+// Rota para cadastrar usuário (cliente ou funcionário)
 app.post("/api/users", async (req, res) => {
   const { name, email, password, role = "user" } = req.body; // role 'user' como padrão
   if (!name || !email || !password)
@@ -425,9 +417,8 @@ app.post("/api/users", async (req, res) => {
   }
 });
 
-// O restante das suas rotas de usuário, booking, etc., pode vir aqui,
-// --- ROTAS DE BOOKING (CHECK-IN) ---
-// Excluir reserva do histórico
+// Rotas de reservas (booking)
+// Rota para excluir reserva do histórico
 app.delete("/api/bookings/:id", async (req, res) => {
   const { id } = req.params;
   if (!id) {
@@ -451,7 +442,7 @@ app.delete("/api/bookings/:id", async (req, res) => {
     res.status(500).json({ error: "Erro no servidor ao excluir reserva." });
   }
 });
-// Cancelar reserva (cliente)
+// Rota para cancelar reserva (cliente)
 app.post("/api/bookings/cancel", async (req, res) => {
   const { booking_id } = req.body;
   if (!booking_id) {
@@ -482,7 +473,7 @@ app.post("/api/bookings/cancel", async (req, res) => {
     res.status(500).json({ error: "Erro no servidor ao cancelar reserva." });
   }
 });
-// --- ROTA PARA LISTAR RESERVAS DO USUÁRIO ---
+// Rota para listar reservas do usuário
 app.get("/api/bookings", async (req, res) => {
   // Permite buscar por customer_id ou user_id via query
   const { customer_id, user_id, all } = req.query;
@@ -517,7 +508,7 @@ app.get("/api/bookings", async (req, res) => {
     res.status(500).json({ error: "Erro no servidor ao buscar reservas." });
   }
 });
-// --- ROTA DE CHECK-OUT ---
+// Rota de check-out
 app.post("/api/bookings/check-out", async (req, res) => {
   const { room_id } = req.body;
   if (!room_id) {
@@ -569,9 +560,9 @@ app.post("/api/bookings/check-in", async (req, res) => {
     res.status(500).json({ error: "Erro no servidor ao fazer check-in." });
   }
 });
-// seguindo a mesma estrutura limpa.
+// ...outras rotas seguindo o mesmo padrão...
 
-// --- 6. INICIAR SERVIDOR ---
+// Inicialização do servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

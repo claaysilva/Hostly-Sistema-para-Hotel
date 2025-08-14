@@ -1,4 +1,4 @@
-// src/pages/UserLoginPage.jsx
+// Página de login do usuário cliente
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,14 +10,19 @@ const UserLoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  /**
+   * Realiza login do usuário cliente
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/api/users/login", {
-        email,
-        password,
-      });
-      // Salva o usuário do cliente em uma chave diferente do admin
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("hostly-client-user", JSON.stringify(res.data));
       navigate("/quartos-disponiveis");
     } catch {

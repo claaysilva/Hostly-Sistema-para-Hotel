@@ -1,11 +1,11 @@
-// src/pages/UserDashboardPage.jsx
+// Página de dashboard do usuário cliente (minhas reservas)
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { useAuth } from "../context/AuthContext";
 import "./UserDashboardPage.css";
 
-// Objeto para traduzir os status
+// Tradução dos status das reservas
 const statusTranslations = {
   active: "Reservado",
   completed: "Finalizado",
@@ -16,14 +16,22 @@ const UserDashboardPage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [deleteError, setDeleteError] = useState("");
+  /**
+   * Define reserva alvo para exclusão do histórico
+   */
   const handleDelete = (bookingId) => {
     setDeleteId(bookingId);
     setShowDeleteModal(true);
   };
+  /**
+   * Confirma exclusão da reserva do histórico
+   */
   const confirmDelete = async () => {
     setDeleteError("");
     try {
-      await axios.delete(`http://localhost:3001/api/bookings/${deleteId}`);
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/bookings/${deleteId}`
+      );
       setReservations((currentReservations) =>
         currentReservations.filter((r) => r.id !== deleteId)
       );
@@ -43,7 +51,7 @@ const UserDashboardPage = () => {
         try {
           setLoading(true);
           const res = await axios.get(
-            `http://localhost:3001/api/bookings?user_id=${user.id}`
+            `${import.meta.env.VITE_API_URL}/api/bookings?user_id=${user.id}`
           );
           setReservations(res.data);
         } catch (err) {
@@ -63,14 +71,20 @@ const UserDashboardPage = () => {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelId, setCancelId] = useState(null);
   const [cancelError, setCancelError] = useState("");
+  /**
+   * Define reserva alvo para cancelamento
+   */
   const handleCancel = async (bookingId) => {
     setCancelId(bookingId);
     setShowCancelModal(true);
   };
+  /**
+   * Confirma cancelamento da reserva ativa
+   */
   const confirmCancel = async () => {
     setCancelError("");
     try {
-      await axios.post(`http://localhost:3001/api/bookings/cancel`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/bookings/cancel`, {
         booking_id: cancelId,
       });
       setReservations((currentReservations) =>

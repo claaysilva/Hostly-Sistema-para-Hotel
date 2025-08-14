@@ -23,7 +23,7 @@ const CustomerFormPage = () => {
   useEffect(() => {
     if (isEditing) {
       axios
-        .get(`http://localhost:3001/api/customers/${id}`)
+        .get(`${import.meta.env.VITE_API_URL}/api/customers/${id}`)
         .then((response) => {
           setCustomer(response.data);
           setOriginalEmail(response.data.email);
@@ -45,7 +45,7 @@ const CustomerFormPage = () => {
     try {
       // Chama a rota dedicada no backend, muito mais rápido e seguro
       await axios.put(
-        "http://localhost:3001/api/users/reset-password-by-email",
+        `${import.meta.env.VITE_API_URL}/api/users/reset-password-by-email`,
         {
           email: customer.email,
         }
@@ -66,23 +66,31 @@ const CustomerFormPage = () => {
     setError("");
     try {
       if (isEditing) {
-        await axios.put(`http://localhost:3001/api/customers/${id}`, customer);
+        await axios.put(
+          `${import.meta.env.VITE_API_URL}/api/customers/${id}`,
+          customer
+        );
         if (originalEmail && originalEmail !== customer.email) {
-          const res = await axios.get("http://localhost:3001/api/users");
+          const res = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/users`
+          );
           const user = res.data.find(
             (u) => u.email === originalEmail && u.role === "user"
           );
           if (user) {
-            await axios.put(`http://localhost:3001/api/users/${user.id}`, {
-              name: customer.name.toUpperCase(),
-              email: customer.email.toLowerCase(),
-              role: "user",
-            });
+            await axios.put(
+              `${import.meta.env.VITE_API_URL}/api/users/${user.id}`,
+              {
+                name: customer.name.toUpperCase(),
+                email: customer.email.toLowerCase(),
+                role: "user",
+              }
+            );
           }
         }
       } else {
         await axios.post(
-          "http://localhost:3001/api/customers/with-user",
+          `${import.meta.env.VITE_API_URL}/api/customers/with-user`,
           customer
         );
       }

@@ -1,9 +1,19 @@
 // src/components/FeaturesGrid/FeaturesGrid.jsx
+/**
+ * FeaturesGrid.jsx
+ * Componente de exibição de diferenciais do hotel no sistema Hostly.
+ *
+ * Exibe cartões de destaque com informações sobre serviços e estrutura.
+ *
+ * Manutenção: Atualize dados conforme evolução dos serviços.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React from "react";
 import "./FeaturesGrid.css";
 
 // Dados para os nossos cartões de destaque.
-// No futuro, isso poderia vir de uma API.
+// Dados dos cartões de destaque. No futuro, pode ser integrado a uma API.
 const featuresData = [
   {
     title: "Gastronomia Exclusiva",

@@ -251,7 +251,6 @@ app.post("/api/rooms", upload.single("image"), async (req, res) => {
 
   let image_url = null; // Inicia como nulo
 
-  // <<< CORREÇÃO 1: LÓGICA PARA MOVER A IMAGEM PARA O FRONTEND >>>
   if (req.file) {
     // Define o caminho para a pasta 'public/images' do seu projeto frontend
     const frontendImagesPath = path.resolve(
@@ -279,7 +278,6 @@ app.post("/api/rooms", upload.single("image"), async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
     const [result] = await connection.execute(
-      // <<< CORREÇÃO 2: FORÇANDO 'is_available' A SER 'true' NA CRIAÇÃO >>>
       "INSERT INTO rooms (name, description, capacity, price_per_night, is_available, image_url) VALUES (?, ?, ?, ?, ?, ?)",
       [name, description, capacity, price_per_night, true, image_url]
     );
@@ -560,7 +558,6 @@ app.post("/api/bookings/check-in", async (req, res) => {
     res.status(500).json({ error: "Erro no servidor ao fazer check-in." });
   }
 });
-// ...outras rotas seguindo o mesmo padrão...
 
 // Inicialização do servidor
 app.listen(PORT, () => {

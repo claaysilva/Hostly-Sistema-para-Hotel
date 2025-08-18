@@ -1,4 +1,14 @@
 // Configuração do Knex para conexão com banco de dados
+/**
+ * knexfile.js
+ * Configuração do Knex para conexão com banco de dados MySQL.
+ *
+ * Este arquivo define os parâmetros de conexão, diretórios de migrations e seeds.
+ *
+ * Manutenção: Atualize as variáveis de ambiente conforme necessário.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 require("dotenv").config();
 
 module.exports = {
@@ -11,10 +21,10 @@ module.exports = {
       database: process.env.DB_NAME,
     },
     migrations: {
-      directory: "./db/migrations", // Pasta das migrations
+      directory: "./db/migrations", // Diretório das migrations
     },
     seeds: {
-      directory: "./db/seeds", // Pasta dos seeds
+      directory: "./db/seeds", // Diretório dos seeds
     },
   },
 };

@@ -1,4 +1,14 @@
 // Página de listagem e gerenciamento de clientes
+/**
+ * CustomerListPage.jsx
+ * Página de listagem e gerenciamento de clientes do sistema Hostly.
+ *
+ * Permite visualizar, editar e excluir clientes cadastrados.
+ *
+ * Manutenção: Adicione filtros ou exportação conforme necessidade do hotel.
+ * Última revisão: 18/08/2025
+/*
+ */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";

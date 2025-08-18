@@ -10,7 +10,10 @@ exports.seed = async function (knex) {
     console.log("Criando cliente e usuário de exemplo");
     const hashedPassword = await bcrypt.hash("1234", saltRounds);
 
-    // Cria usuário e obtém o ID
+    /**
+     * Cria usuário e obtém o ID.
+     * Insere um novo usuário no banco de dados e retorna seu ID.
+     */
     const [newUserId] = await knex("users")
       .insert({
         name: "Cliente Exemplo",
@@ -20,7 +23,10 @@ exports.seed = async function (knex) {
       })
       .returning("id");
 
-    // Cria cliente vinculado ao user_id
+    /**
+     * Cria cliente vinculado ao user_id.
+     * Insere um novo cliente no banco de dados associado ao ID do usuário.
+     */
     await knex("customers").insert({
       name: "Cliente Exemplo",
       email: customerEmail,

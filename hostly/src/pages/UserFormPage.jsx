@@ -1,4 +1,14 @@
 // Página de cadastro/edição de funcionário (admin/operator)
+/**
+ * UserFormPage.jsx
+ * Página de cadastro e edição de funcionários do sistema Hostly.
+ *
+ * Permite criar ou editar dados de funcionários, resetar senha e definir função.
+ *
+ * Manutenção: Ajuste campos e validações conforme regras do hotel.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";

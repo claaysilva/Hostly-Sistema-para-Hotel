@@ -1,5 +1,14 @@
 // src/components/Footer/Footer.jsx
-import React from "react";
+/**
+ * Footer.jsx
+ * Componente de rodapé do sistema Hostly.
+ *
+ * Exibe informações institucionais, navegação, contato e redes sociais.
+ *
+ * Manutenção: Atualize dados de contato e links conforme necessidade.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import "./Footer.css";

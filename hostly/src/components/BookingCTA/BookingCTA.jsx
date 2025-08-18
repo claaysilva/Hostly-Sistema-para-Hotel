@@ -1,4 +1,14 @@
 // src/components/BookingCTA/BookingCTA.jsx
+/**
+ * BookingCTA.jsx
+ * Componente de chamada para ação de reserva no sistema Hostly.
+ *
+ * Exibe botão para consulta de quartos e direciona para página de reservas.
+ *
+ * Manutenção: Atualize textos e links conforme campanhas.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 import "./BookingCTA.css";

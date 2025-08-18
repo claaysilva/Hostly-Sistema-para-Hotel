@@ -1,4 +1,14 @@
 // src/components/ProtectedRoute.jsx
+/**
+ * ProtectedRoute.jsx
+ * Componente de rota protegida para controle de acesso no sistema Hostly.
+ *
+ * Permite restringir acesso a rotas conforme papel do usuário (admin, operador, cliente).
+ *
+ * Manutenção: Ajuste regras de redirecionamento conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";

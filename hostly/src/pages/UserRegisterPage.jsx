@@ -1,4 +1,14 @@
 // Página de cadastro de novo usuário (cliente)
+/**
+ * UserRegisterPage.jsx
+ * Página de cadastro de novo usuário cliente do sistema Hostly.
+ *
+ * Permite criar conta de cliente e redireciona para login após cadastro.
+ *
+ * Manutenção: Ajuste campos e validações conforme regras do hotel.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";

@@ -2,6 +2,10 @@
 exports.seed = async function (knex) {
   const roomsCount = await knex("rooms").count("id as count").first();
   if (roomsCount.count > 0) {
+    /**
+     * Não insere se já houver quartos.
+     * Esta verificação é importante para evitar duplicação de dados.
+     */
     return; // Não insere se já houver quartos
   }
 

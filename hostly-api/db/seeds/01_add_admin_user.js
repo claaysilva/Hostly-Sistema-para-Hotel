@@ -1,4 +1,14 @@
 // Seed para criar usuário admin padrão
+/**
+ * 01_add_admin_user.js
+ * Seed para criar usuário admin padrão no banco de dados.
+ *
+ * Executa inserção do usuário admin caso não exista, com senha padrão criptografada.
+ *
+ * Manutenção: Altere o e-mail ou senha conforme política de segurança.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 

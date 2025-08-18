@@ -1,4 +1,14 @@
 // src/pages/RoomFormPage.jsx
+/**
+ * RoomFormPage.jsx
+ * Página de cadastro e edição de quartos do sistema Hostly.
+ *
+ * Permite criar ou editar dados de quartos, incluindo imagem e disponibilidade.
+ *
+ * Manutenção: Ajuste campos e validações conforme regras do hotel.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";

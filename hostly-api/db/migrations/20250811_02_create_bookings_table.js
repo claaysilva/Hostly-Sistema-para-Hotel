@@ -1,4 +1,13 @@
-// Migration para criar tabela de reservas (bookings)
+/**
+ * 20250811_02_create_bookings_table.js
+ * Migration para criar tabela de reservas (bookings).
+ *
+ * Cria a tabela de reservas e define relacionamentos com quartos e clientes.
+ *
+ * Manutenção: Adicione ou altere campos conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 exports.up = async function (knex) {
   if (!(await knex.schema.hasTable("bookings"))) {
     return knex.schema.createTable("bookings", (table) => {
@@ -26,7 +35,7 @@ exports.up = async function (knex) {
   }
 };
 
-// Remove tabela de reservas
+// Remove tabela de reservas criada por esta migration
 exports.down = async function (knex) {
   return knex.schema.dropTableIfExists("bookings");
 };

@@ -1,9 +1,29 @@
+/**
+ * CheckInPage.jsx
+ * Página de check-in manual de clientes em quartos do sistema Hostly.
+ *
+ * Permite selecionar cliente e realizar check-in em quarto específico.
+ *
+ * Manutenção: Adicione validações ou integrações conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CheckInPage.css";
 
 const CheckInPage = () => {
+  /**
+   * CheckInPage.jsx
+   * Página de check-in manual de clientes em quartos do sistema Hostly.
+   *
+   * Permite selecionar cliente e realizar check-in em quarto específico.
+   *
+   * Manutenção: Adicione validações ou integrações conforme evolução do sistema.
+   * Última revisão: 18/08/2025
+   * Autor: Equipe de Engenharia Hostly
+   */
   const { roomId } = useParams();
   const navigate = useNavigate();
 

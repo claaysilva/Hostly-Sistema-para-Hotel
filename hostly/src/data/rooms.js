@@ -1,5 +1,15 @@
 // src/data/rooms.js
 
+/**
+ * rooms.js
+ * Dados de quartos utilizados no frontend do sistema Hostly.
+ *
+ * Estrutura de dados para exibição e testes de funcionalidades de reserva.
+ *
+ * Manutenção: Atualize os dados conforme necessidade do hotel ou ambiente de testes.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 export const roomsData = [
   {
     id: 1,

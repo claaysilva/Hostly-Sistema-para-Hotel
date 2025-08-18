@@ -1,4 +1,13 @@
-// Página de detalhes do quarto
+/**
+ * RoomDetailPage.jsx
+ * Página de detalhes de um quarto do sistema Hostly.
+ *
+ * Exibe informações detalhadas, imagem, disponibilidade e opção de reserva.
+ *
+ * Manutenção: Adicione campos conforme evolução do produto.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";

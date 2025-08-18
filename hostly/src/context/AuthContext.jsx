@@ -1,3 +1,13 @@
+/**
+ * AuthContext.jsx
+ * Contexto global de autenticação do sistema Hostly.
+ *
+ * Gerencia estado do usuário, login, logout e persistência local.
+ *
+ * Manutenção: Adicione métodos de autenticação ou integração conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 // Contexto de autenticação do usuário
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

@@ -1,4 +1,14 @@
 // Página de listagem e reserva de quartos disponíveis
+/**
+ * AvailableRoomsPage.jsx
+ * Página de listagem e reserva de quartos disponíveis do sistema Hostly.
+ *
+ * Permite clientes visualizarem e reservarem quartos disponíveis.
+ *
+ * Manutenção: Adicione filtros ou exportação conforme necessidade do hotel.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";

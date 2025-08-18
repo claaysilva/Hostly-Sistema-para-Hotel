@@ -1,4 +1,14 @@
 // Migration para criar tabelas principais: users, customers, rooms
+/**
+ * 20250811_01_create_core_tables.js
+ * Migration para criar tabelas principais: users, customers, rooms.
+ *
+ * Cria as tabelas essenciais do sistema Hostly e define relacionamentos.
+ *
+ * Manutenção: Adicione ou altere campos conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 exports.up = async function (knex) {
   if (!(await knex.schema.hasTable("users"))) {
     await knex.schema.createTable("users", function (table) {
@@ -44,6 +54,7 @@ exports.up = async function (knex) {
 
 // Remove tabelas principais
 exports.down = async function (knex) {
+  // Remove tabelas principais criadas por esta migration
   await knex.schema.dropTableIfExists("rooms");
   await knex.schema.dropTableIfExists("customers");
   await knex.schema.dropTableIfExists("users");

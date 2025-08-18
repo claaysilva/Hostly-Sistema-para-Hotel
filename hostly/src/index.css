@@ -1,12 +1,6 @@
-/* ================================================= */
-/* ARQUIVO: index.css (A Base Visual do Seu Site)    */
-/* ================================================= */
-
-/* --- 1. IMPORTAÇÃO DAS FONTES --- */
-/* Importa as duas fontes escolhidas em uma única chamada. */
+/* Importação das fontes principais */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap");
-
-/* --- 2. PALETA DE CORES GLOBAL (Fonte da Verdade) --- */
+/* Paleta de cores global */
 :root {
   /* Sua paleta base */
   --cor-fundo-principal: #f4f0db;
@@ -22,8 +16,7 @@
   --cor-aviso: #f4a261;
   --cor-info: #5c677d;
 }
-
-/* --- 3. ESTILOS GLOBAIS E RESETS BÁSICOS --- */
+/* Estilos globais e resets básicos */
 *,
 *::before,
 *::after {
@@ -34,7 +27,6 @@ body {
   margin: 0;
   padding: 0;
 
-  /* APLICAÇÃO DA NOVA IDENTIDADE VISUAL */
   font-family: "Montserrat", sans-serif; /* Usa a fonte escolhida em todo o site */
   background-color: var(
     --cor-fundo-principal
@@ -47,11 +39,9 @@ body {
 
 /* Define uma largura máxima para o conteúdo principal */
 main {
-  /* A tag 'main' agora apenas serve como um marco semântico, sem limitar o layout. */
   display: block; /* Garante que ela ocupe a largura disponível. */
 }
 
-/* NOVA CLASSE UTILITÁRIA para centralizar conteúdo quando necessário */
 .container {
   max-width: 1200px;
   margin: 0 auto;

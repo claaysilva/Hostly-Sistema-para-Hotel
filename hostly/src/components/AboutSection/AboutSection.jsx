@@ -1,4 +1,13 @@
-// src/components/AboutSection/AboutSection.jsx
+/**
+ * AboutSection.jsx
+ * Componente de seção institucional do sistema Hostly.
+ *
+ * Exibe informações sobre o hotel e sua proposta de valor.
+ *
+ * Manutenção: Atualize texto conforme evolução da marca.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React from "react";
 import "./AboutSection.css";
 

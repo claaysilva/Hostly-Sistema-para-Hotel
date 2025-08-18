@@ -1,4 +1,14 @@
 // Página de dashboard do usuário cliente (minhas reservas)
+/**
+ * UserDashboardPage.jsx
+ * Página de dashboard do usuário cliente do sistema Hostly.
+ *
+ * Exibe reservas ativas e histórico, permite cancelar e excluir reservas.
+ *
+ * Manutenção: Adicione gráficos ou exportação conforme evolução do sistema.
+ * Última revisão: 18/08/2025
+ * Autor: Equipe de Engenharia Hostly
+ */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
